@@ -15,6 +15,6 @@ export const  ActiveLink = ({ path, name }: Props) => {
     return (
         <Link 
         className={`p-2 m-2 text-white ${style.link} ${pathName === path ? style.active : ""}`}
-        href={path} >{name}</Link>
+        href={path} prefetch={true}>{name}</Link>
     );
 };
