@@ -13,4 +13,17 @@ export class AuthService {
             timeoutErrorMessage: 'Request Timeout'
         });
     }
+
+    public async login(email: string, password: string) {
+        const response = await this.axios.post('/users/login', {
+            email,
+            password
+        });
+
+        /* const user = response.data;
+
+        return {email: user.email, id: user.id, name: user.name}; */
+
+        return response.data;
+    }
 }

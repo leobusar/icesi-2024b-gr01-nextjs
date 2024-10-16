@@ -1,5 +1,6 @@
 "use client";
 
+import { useLogin } from "@/hooks/auth/useLogin";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -7,21 +8,18 @@ export default function LoginPage(){
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();
-
-    const loginFunction = async (email: string, password: string) => {
-        return  {
-            email,
-            password
-        };
-    }
+    const {login:loginFunction} = useLogin();
 
     const onSubmit = async () => {
         if(login && password){
             loginFunction(login, password).then((res) => {
                 console.log(res);
-                router.push("/home");
+                router.push("/profile");
             }
             ).catch((err) => {
+                alert("Invalid login or password");
+                setLogin("");
+                setPassword("");
                 console.log(err);
             });
         }else{
